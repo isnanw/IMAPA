@@ -13,73 +13,48 @@
           <div class="main-menu-content">
             <ul>
               <li class="more-details">
-                <a href=""><i class="ti-user"></i>View Profile</a>
+                <a href="#"><i class="ti-user"></i>View Profile</a>
                 <a href="<?= base_url('auth/logout') ?>"><i class="ti-layout-sidebar-left"></i>Logout</a>
               </li>
             </ul>
           </div>
         </div>
         <div class="pcoded-navigation-label">Menu</div>
-        <ul class="pcoded-item pcoded-left-item">
-          <li class="active">
-            <a href="#" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-home"></i><b></b></span>
-              <span class="pcoded-mtext">Dashboard</span>
-              <span class="pcoded-mcaret"></span>
-            </a>
-          </li>
-        </ul>
-
-        <ul class="pcoded-item pcoded-left-item">
-          <li class="pcoded-hasmenu">
-            <a href="javascript:void(0)" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>BC</b></span>
-              <span class="pcoded-mtext">Basic</span>
-              <span class="pcoded-mcaret"></span>
-            </a>
-            <ul class="pcoded-submenu">
-              <li class=" ">
-                <a href="breadcrumb.html" class="waves-effect waves-dark">
-                  <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                  <span class="pcoded-mtext">Breadcrumbs</span>
-                  <span class="pcoded-mcaret"></span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        
-        <ul class="pcoded-item pcoded-left-item">
-          <li class="pcoded-hasmenu">
-            <a href="javascript:void(0)" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-              <span class="pcoded-mtext">Pages</span>
-              <span class="pcoded-mcaret"></span>
-            </a>
-            <ul class="pcoded-submenu">
-              <li class="">
-                <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
-                  <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                  <span class="pcoded-mtext">Login</span>
-                  <span class="pcoded-mcaret"></span>
-                </a>
-              </li>
-              <li class="">
-                <a href="auth-sign-up.html" class="waves-effect waves-dark">
-                  <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                  <span class="pcoded-mtext">Registration</span>
-                  <span class="pcoded-mcaret"></span>
-                </a>
-              </li>
-              <li class="active">
-                <a href="sample-page.html" class="waves-effect waves-dark">
-                  <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
-                  <span class="pcoded-mtext">Sample Page</span>
-                  <span class="pcoded-mcaret"></span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <?php
+        // data main menu
+        $main_menu = $this->db->get_where('menu', array('parent' => 0));
+        foreach ($main_menu->result() as $main) {
+          // Query untuk mencari data sub menu
+          $sub_menu = $this->db->get_where('menu', array('parent' => $main->kodemenu));
+          // periksa apakah ada sub menu
+          if ($sub_menu->num_rows() > 0) {
+            // main menu dengan sub menu
+            echo "<ul class='pcoded-item pcoded-left-item'>
+                    <li class='pcoded-hasmenu'>
+                      <a href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='$main->icon'></i><b>BC</b></span>
+                        <span class='pcoded-mtext'>$main->menu</span>
+                      </a>";
+            // sub menu nya disini
+            echo "<ul class=\"pcoded-submenu\">";
+            foreach ($sub_menu->result() as $sub) {
+              echo "<li class=''>" . anchor($sub->url, '
+                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                      <span class="pcoded-mtext">' . $sub->menu) . "</span>
+                      <span class=\"pcoded-mcaret\"></span>
+                    </li>";
+            }
+            echo "</ul></li></ul>";
+          } else {
+            // main menu tanpa sub menu
+            echo "<ul class=\"pcoded-item pcoded-left-item\">
+                    <li class=''>" . anchor($main->url, '
+                    <span class="pcoded-micon"><i class="' . $main->icon . '"></i><b></b></span>
+                    <span class="pcoded-mtext">' . $main->menu) . "</span><span class=\"pcoded-mcaret\"></span>
+                    </li>
+                  </ul>";
+          }
+        }
+        ?>
       </div>
     </nav>

@@ -32,13 +32,13 @@
               </div>
               <div class="row m-t-25 text-left">
                 <div class="col-12">
-                  <div class="checkbox-fade fade-in-primary d-">
+                  <!-- <div class="checkbox-fade fade-in-primary d-">
                     <label>
                       <input type="checkbox" value="">
                       <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                       <span class="text-inverse">View Password</span>
                     </label>
-                  </div>
+                  </div> -->
                   <div class="forgot-phone text-right f-right">
                     <!-- <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a> -->
                   </div>
