@@ -4,8 +4,7 @@
     <div class="row">
       <div class="col-sm-12">
         <!-- Authentication card start -->
-
-        <form class="md-float-material form-material">
+        <form class="md-float-material form-material" method="POST" action="<?= base_url('auth'); ?>">
           <div class="text-center">
             <!-- <img src="<?= base_url('Asset/') ?>images/logo.png" alt="logo.png"> -->
           </div>
@@ -16,15 +15,20 @@
                   <h3 class="text-center">Sign In</h3>
                 </div>
               </div>
+              <p class="text-center">
+                <?= $this->session->flashdata('message'); ?>
+              </p>
               <div class="form-group form-primary">
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email" class="form-control" id="email" value="<?= set_value('email') ?>">
                 <span class="form-bar"></span>
                 <label class="float-label">Your Email Address</label>
+                <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
               </div>
               <div class="form-group form-primary">
                 <input type="password" name="password" class="form-control">
                 <span class="form-bar"></span>
                 <label class="float-label">Password</label>
+                <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
               </div>
               <div class="row m-t-25 text-left">
                 <div class="col-12">
@@ -42,14 +46,14 @@
               </div>
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
                 </div>
               </div>
               <hr />
               <div class="row">
                 <div class="col-md-10">
                   <div class="text-center">
-                    <p class="text-inverse text-left"><a class="small" href="<?= base_url('auth/registration') ?>">Create an Account!</a></p>
+                    <p class="text-inverse text-left"><a class="" href="<?= base_url('auth/registration') ?>">Create an Account!</a></p>
                   </div>
                 </div>
                 <div class="col-md-2">

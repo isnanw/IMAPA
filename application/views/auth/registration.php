@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
-        <form class="md-float-material form-material">
+        <form class="md-float-material form-material" method="POST" action="<?= base_url('auth/registration') ?>">
           <div class="text-center">
             <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
           </div>
@@ -15,26 +15,27 @@
                 </div>
               </div>
               <div class="form-group form-primary">
-                <input type="text" name="user-name" class="form-control">
+                <input type="text" name="name" id="name" class="form-control" value="<?= set_value('name'); ?>">
                 <span class="form-bar"></span>
                 <label class="float-label">Choose Username</label>
               </div>
               <div class="form-group form-primary">
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email" id="email" class="form-control" value="<?= set_value('email'); ?>">
                 <span class="form-bar"></span>
                 <label class="float-label">Your Email Address</label>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group form-primary">
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password1" class="form-control">
                     <span class="form-bar"></span>
                     <label class="float-label">Password</label>
+                    <?= form_error('password1', '<small class="text-danger pl-3">', '</small>') ?>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group form-primary">
-                    <input type="password" name="confirm-password" class="form-control">
+                    <input type="password" name="password2" class="form-control">
                     <span class="form-bar"></span>
                     <label class="float-label">Confirm Password</label>
                   </div>
@@ -53,14 +54,14 @@
               </div>
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now</button>
+                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now</button>
                 </div>
               </div>
               <hr />
               <div class="row">
                 <div class="col-md-10">
                   <p class="text-inverse text-left">
-                      <a class="small" href="<?= base_url('auth'); ?>">Already have an account? Login!</a>
+                    <a class="" href="<?= base_url('auth'); ?>">Already have an account? Login!</a>
                   </p>
                 </div>
                 <div class="col-md-2">
