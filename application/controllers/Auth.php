@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
+  /**
+   * Index Page for this controller.
+   *
+   * @author Isnan Wahyudi <isnan@gin.co.id>
+   * @see https://www.ilmuit.my.id/
+   */
+
   public function __construct()
   {
     parent::__construct();
