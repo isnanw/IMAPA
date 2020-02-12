@@ -35,12 +35,20 @@ class DataMaster extends CI_Controller
   {
     $data['title'] = 'Pengaturan Menu';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    $this->load->view('template/header', $data);
-    $this->load->view('template/topnav');
-    $this->load->view('template/sidebar');
-    $this->load->view('template/headerConten');
-    $this->load->view('dataMaster/menu', $data);
-    $this->load->view('template/footer');
+    $data['menu'] = $this->db->get('menu')->result_array();
+    $this->form_validation->set_rules('menu', 'Menu', 'required');
+    if ($this->form_validation->run() == false) {
+      $this->load->view('template/header', $data);
+      $this->load->view('template/topnav');
+      $this->load->view('template/sidebar');
+      $this->load->view('template/headerConten');
+      $this->load->view('dataMaster/menu', $data);
+      $this->load->view('template/footer');
+    } else {
+      // $this->db->insert('menu', ['menu' => $this->input->post('menu')]);
+      // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Add New Menu is Success!</div>');
+      // redirect('masterData/menu');
+    }
   }
   public function artikel()
   {
